@@ -1,11 +1,10 @@
-import { Text, View } from 'react-native';
-import '../global.css';
+import { Stack } from 'expo-router';
 
-export default function App() {
+export default function RootLayout() {
   return (
-    <View className="flex-1 items-center justify-center">
-      <Text className="text-3xl text-blue-500">Patrick says hi</Text>
-      <Text className="text-3xl text-blue-500">Patrick has hi</Text>
-    </View>
+    <Stack>
+      <Stack.Screen name="index" options={{ headerShown: true }} />
+      <Stack.Screen name="test" options={{ headerShown: true }} />
+    </Stack>
   );
 }

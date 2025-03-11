@@ -2,6 +2,7 @@
   "expo": {
     "name": "hcs_app",
     "slug": "hcs_app",
+    "scheme": "hcs-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -23,6 +24,23 @@
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
+          "recordAudioAndroid": true
+        }
+      ],
+      [
+        "expo-sensors",
+        {
+          "motionPermissions": "Allow $(PRODUCT_NAME) to access your motion sensor"
+        }
+      ],
+      "expo-sqlite"
+    ]
   }
 }
