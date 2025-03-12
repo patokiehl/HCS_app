@@ -4,25 +4,18 @@ import { CameraView, CameraType } from 'expo-camera';
 import { useCamera } from '../hooks/useCamera';
 
 const CameraPreview = ({ visible }: { visible: boolean }) => {
-  const { hasPermission } = useCamera();
+  const { hasPermission, permissionResponse } = useCamera();
   const [isCameraOn, setIsCameraOn] = useState(false);
   const [facing] = useState<CameraType>('front');
 
   useEffect(() => {
-    if (!hasPermission) {
+    if (!hasPermission && permissionResponse) {
       Alert.alert('Camera permission not granted');
-    } else {
+    } else if (hasPermission) {
       setIsCameraOn(true);
+      console.log('jere');
     }
-  }, [hasPermission]);
-
-  if (!hasPermission) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Camera permission not granted</Text>
-      </View>
-    );
-  }
+  }, [hasPermission, permissionResponse]);
 
   if (!isCameraOn) {
     return (

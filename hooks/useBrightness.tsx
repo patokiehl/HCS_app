@@ -3,13 +3,14 @@ import { useState, useEffect } from 'react';
 
 export const useBrightness = () => {
   const [brightness, setBrightness] = useState<number | null>(null);
-  const [hasPermission, setHasPermission] = useState(false);
+  const [hasBrightPerms, setHasPermission] = useState(false);
 
   useEffect(() => {
     (async () => {
       const { status } = await Brightness.requestPermissionsAsync();
       if (status === 'granted') {
         setHasPermission(true);
+        console.log('we have brightness control');
         const currentBrightness = await Brightness.getBrightnessAsync();
         setBrightness(currentBrightness);
       } else {
@@ -18,5 +19,5 @@ export const useBrightness = () => {
     })();
   }, []);
 
-  return { brightness, hasPermission };
+  return { brightness, hasBrightPerms };
 };

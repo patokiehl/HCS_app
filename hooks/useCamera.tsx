@@ -9,5 +9,6 @@ export const useCamera = () => {
 
   return {
     hasPermission: permissionResponse?.status === 'granted',
+    permissionResponse,
   };
 };

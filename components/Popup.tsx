@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import AntDesign from '@expo/vector-icons/AntDesign';
+import { View } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 
 interface PopupOutputProps {
   visible: boolean;
@@ -9,9 +9,8 @@ interface PopupOutputProps {
 const PopupOutput = ({ visible }: PopupOutputProps) => {
   if (!visible) return null;
   return (
-    <View className="absolute top-20 left-20">
+    <View style={{ position: 'absolute', top: 50, left: 50, alignItems: 'center' }}>
       <AntDesign name="warning" size={40} color="red" />
-      <Text className="text-red-500 text-lg">Popup</Text>
     </View>
   );
 };

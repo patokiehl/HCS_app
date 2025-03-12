@@ -3,20 +3,15 @@ import { Text, View, Pressable } from 'react-native';
 import '../global.css';
 
 import { useCamera } from '@/hooks/useCamera';
-import { AntDesign } from '@expo/vector-icons';
+import { useBrightness } from '@/hooks/useBrightness';
+import { FontAwesome } from '@expo/vector-icons';
 
 export default function IndexPage() {
   const { hasPermission } = useCamera();
+  console.log('the user has granted permissions', hasPermission);
 
-  if (!hasPermission) {
-    console.log('no permission');
-    return (
-      <View className="flex-1 items-center justify-center">
-        <Text>Requesting camera permissions...</Text>
-      </View>
-    );
-  }
-
+  const { hasBrightPerms } = useBrightness();
+  console.log('the user has given brightness perms', hasBrightPerms);
   const handlePress = (num: number) => {
     router.push(`/(conditions)?order=${num}`);
   };
@@ -26,18 +21,15 @@ export default function IndexPage() {
       <View className="flex-1 items-center justify-center">
         <Text className="text-3xl text-blue-500">Patrick says hi</Text>
         <Link href="/test">
-          <Text>Test</Text>
+          <Text className="text-blue-400 text-3xl font-bold">Test</Text>
         </Link>
-        <Link href="/home">
-          <Text>Home</Text>
-        </Link>
-        <Link href="/broken">
-          <Text>Broken</Text>
+        <Link href="/Camera">
+          <Text className="text-blue-400 text-3xl font-bold">Broken</Text>
         </Link>
         <Link href="/(conditions)">
           <Text>Border</Text>
         </Link>
-        <AntDesign name="warning" size={40} color="red" />
+        <FontAwesome name="info-circle" className="color-black dark:color-white text-4xl" />
       </View>
       <View className="flex-1 items-start justify-items-center border-spacing-5">
         {[1, 2, 3, 4, 5, 6].map((num) => (

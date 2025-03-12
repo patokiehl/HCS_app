@@ -11,12 +11,14 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "@expo/vector-icons": "^14.0.2",
     "eslint-plugin-expo": "^0.1.0",
     "expo": "~52.0.37",
     "expo-brightness": "~13.0.3",
     "expo-camera": "~16.0.17",
     "expo-constants": "~17.0.7",
     "expo-file-system": "~18.0.11",
+    "expo-image": "~2.0.6",
     "expo-linking": "~7.0.5",
     "expo-router": "~4.0.17",
     "expo-sensors": "~14.0.2",
