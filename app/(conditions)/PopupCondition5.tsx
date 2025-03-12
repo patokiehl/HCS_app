@@ -2,10 +2,15 @@ import { View, ScrollView } from 'react-native';
 import React from 'react';
 
 import TextView from '@/components/TextView';
+import useShoulderAttack from '@/hooks/useShoulderAttack';
+import PopupOutput from '@/components/Popup';
+
 export default function PopupCondition5() {
+  const shoulderAttack = useShoulderAttack(5000, 0.5, 5000);
   return (
     <ScrollView>
       <View>
+        <PopupOutput visible={shoulderAttack} />
         <TextView
           texts={[
             'A whole lot of text is far to much to render on this screen, what happens if we keep going, does it eventully break and the app no longer work - Popup Alert',

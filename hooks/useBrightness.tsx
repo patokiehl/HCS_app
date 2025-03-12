@@ -7,7 +7,6 @@ export const useBrightness = () => {
 
   useEffect(() => {
     (async () => {
-      // Request permission to control brightness
       const { status } = await Brightness.requestPermissionsAsync();
       if (status === 'granted') {
         setHasPermission(true);

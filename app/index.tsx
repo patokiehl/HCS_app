@@ -2,10 +2,25 @@ import { Link, router } from 'expo-router';
 import { Text, View, Pressable } from 'react-native';
 import '../global.css';
 
+import { useCamera } from '@/hooks/useCamera';
+import { AntDesign } from '@expo/vector-icons';
+
 export default function IndexPage() {
+  const { hasPermission } = useCamera();
+
+  if (!hasPermission) {
+    console.log('no permission');
+    return (
+      <View className="flex-1 items-center justify-center">
+        <Text>Requesting camera permissions...</Text>
+      </View>
+    );
+  }
+
   const handlePress = (num: number) => {
     router.push(`/(conditions)?order=${num}`);
   };
+
   return (
     <>
       <View className="flex-1 items-center justify-center">
@@ -22,6 +37,7 @@ export default function IndexPage() {
         <Link href="/(conditions)">
           <Text>Border</Text>
         </Link>
+        <AntDesign name="warning" size={40} color="red" />
       </View>
       <View className="flex-1 items-start justify-items-center border-spacing-5">
         {[1, 2, 3, 4, 5, 6].map((num) => (
