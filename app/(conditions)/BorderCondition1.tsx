@@ -1,13 +1,26 @@
 import { View, ScrollView } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import FlashingBorder from '@/components/FlashingBorder';
 import TextView from '@/components/TextView';
 import useShoulderAttack from '@/hooks/useShoulderAttack';
+import InputButton from '@/components/NativeButton';
+import { useTimer } from '@/hooks/useTime';
 
 export default function BorderCondition1() {
   const shoulderAttack = useShoulderAttack(5000, 1, 2000);
-  console.log(shoulderAttack);
+  const { startTimer, stopTimer } = useTimer();
+
+  useEffect(() => {
+    if (shoulderAttack) {
+      startTimer();
+    }
+  }, [shoulderAttack, startTimer]);
+
+  const handlePress = () => {
+    const elapsedTime = stopTimer();
+    console.log('Elapsed time (ms):', elapsedTime);
+  };
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <FlashingBorder visible={shoulderAttack} />
@@ -24,6 +37,7 @@ export default function BorderCondition1() {
           />
         </ScrollView>
       </View>
+      <InputButton onPress={handlePress} title="submit" />
     </View>
   );
 }

@@ -1,12 +1,26 @@
 import { View, ScrollView } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import TextView from '@/components/TextView';
 import useShoulderAttack from '@/hooks/useShoulderAttack';
 import PopupOutput from '@/components/Popup';
+import InputButton from '@/components/NativeButton';
+import { useTimer } from '@/hooks/useTime';
 
 export default function PopupCondition5() {
   const shoulderAttack = useShoulderAttack(5000, 1, 2000);
+  const { startTimer, stopTimer } = useTimer();
+
+  useEffect(() => {
+    if (shoulderAttack) {
+      startTimer();
+    }
+  }, [shoulderAttack, startTimer]);
+
+  const handlePress = () => {
+    const elapsedTime = stopTimer();
+    console.log('Elapsed time (ms):', elapsedTime);
+  };
   return (
     <View>
       <ScrollView>
@@ -21,6 +35,7 @@ export default function PopupCondition5() {
         />
       </ScrollView>
       <PopupOutput visible={shoulderAttack} />
+      <InputButton onPress={handlePress} title="Submit" />
     </View>
   );
 }
