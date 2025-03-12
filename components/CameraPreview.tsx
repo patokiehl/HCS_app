@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Alert } from 'react-native';
-import { CameraView, CameraType } from 'expo-camera';
+import { CameraView } from 'expo-camera';
 import { useCamera } from '../hooks/useCamera';
 
 const CameraPreview = ({ visible }: { visible: boolean }) => {
   const { hasPermission, permissionResponse } = useCamera();
   const [isCameraOn, setIsCameraOn] = useState(false);
-  const [facing] = useState<CameraType>('front');
 
   useEffect(() => {
     if (!hasPermission && permissionResponse) {
       Alert.alert('Camera permission not granted');
     } else if (hasPermission) {
       setIsCameraOn(true);
-      console.log('jere');
+      console.log(isCameraOn);
     }
-  }, [hasPermission, permissionResponse]);
+  }, [hasPermission, permissionResponse, isCameraOn]);
 
   if (!isCameraOn) {
     return (
@@ -28,7 +27,7 @@ const CameraPreview = ({ visible }: { visible: boolean }) => {
   if (!visible) {
     return null;
   }
-  return <CameraView style={{ flex: 1 }} facing={facing} />;
+  return <CameraView style={{ flex: 1 }} facing={'front'} />;
 };
 
 export default CameraPreview;

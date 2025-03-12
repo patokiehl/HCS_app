@@ -1,23 +1,14 @@
-import { View, ScrollView } from 'react-native';
+import { View, Text } from 'react-native';
 import React from 'react';
 
-import TextView from '@/components/TextView';
 import CameraPreview from '@/components/CameraPreview';
+import useShoulderAttack from '@/hooks/useShoulderAttack';
 export default function CameraCondition2() {
+  const shoulderAttack = useShoulderAttack(7000, 1, 3000);
   return (
-    <ScrollView>
-      <View>
-        <CameraPreview visible={true} />
-        <TextView
-          texts={[
-            'A whole lot of text is far to much to render on this screen, what happens if we keep going, does it eventully break and the app no longer work - Cam Alert',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu ipsum sapien. Vivamus ut lectus nec massa blandit ultricies vitae.',
-            '3Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu ipsum sapien. Vivamus ut lectus nec massa blandit ultricies vitae.',
-            '4Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu ipsum sapien. Vivamus ut lectus nec massa blandit ultricies vitae.',
-            '5Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu ipsum sapien. Vivamus ut lectus nec massa blandit ultricies vitae.',
-          ]}
-        />
-      </View>
-    </ScrollView>
+    <View style={{ flex: 1 }}>
+      <Text>Camera page yayy</Text>
+      <CameraPreview visible={shoulderAttack} />
+    </View>
   );
 }

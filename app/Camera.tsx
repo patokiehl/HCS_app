@@ -5,7 +5,6 @@ import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import TextView from '../components/TextView';
 
 export default function App() {
-  const [facing] = useState<CameraType>('front');
   const [permission, requestPermission] = useCameraPermissions();
 
   if (!permission) {
@@ -14,7 +13,6 @@ export default function App() {
   }
 
   if (!permission.granted) {
-    // Camera permissions are not granted yet.
     return (
       <View style={styles.container}>
         <Text style={styles.message}>We need your permission to show the camera</Text>

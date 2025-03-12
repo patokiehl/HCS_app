@@ -11,7 +11,6 @@ const DimmingOn = ({ visible }: { visible: boolean }) => {
   useEffect(() => {
     const dimScreen = async () => {
       if (hasBrightPerms && brightness !== null && visible && isFocused) {
-        // Save original brightness once
         if (originalBrightnessRef.current === null) {
           originalBrightnessRef.current = brightness;
         }
