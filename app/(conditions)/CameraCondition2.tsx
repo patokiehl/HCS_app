@@ -13,11 +13,9 @@ export default function CameraCondition2() {
   const CameraOnStyle = { height: 200, width: 200, borderWidth: 1, borderColor: 'black' };
   const CameraOffStyle = { height: 0, width: 0, borderWidth: 1, borderColor: 'black' };
 
-
   useEffect(() => {
     if (shoulderAttack) {
       startTimer();
-
     }
   }, [shoulderAttack, startTimer]);
 
@@ -29,8 +27,8 @@ export default function CameraCondition2() {
   return (
     <View style={{ flex: 1 }}>
       <View style={shoulderAttack ? CameraOnStyle : CameraOffStyle}>
-  <CameraPreview visible={true} style={{ flex: 1 }} />
-</View>
+        <CameraPreview visible={true} style={{ flex: 1 }} />
+      </View>
       <View>
         <TextView
           texts={[

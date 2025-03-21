@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link, Stack, useLocalSearchParams } from 'expo-router';
+import { Link, Stack } from 'expo-router';
 import { View, Text } from 'react-native';
 
 export default function NotFoundScreen() {
-  const { order } = useLocalSearchParams<{ order?: string }>();
   return (
     <>
       <Stack.Screen options={{ title: 'Oops!' }} />

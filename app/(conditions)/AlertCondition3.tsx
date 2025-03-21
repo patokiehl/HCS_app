@@ -1,5 +1,5 @@
 import { ScrollView, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import TextView from '@/components/TextView';
 
 import AlertActive from '@/components/Alertmy';

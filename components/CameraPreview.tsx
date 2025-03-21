@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import { CameraView } from 'expo-camera';
 import { useCamera } from '../hooks/useCamera';
 import { useIsFocused } from '@react-navigation/native';
-
 
 type CameraPreviewProps = {
   visible: boolean;
@@ -23,7 +22,6 @@ const CameraPreview = ({ visible, style }: CameraPreviewProps) => {
       setIsCameraOn(true);
     }
   }, [hasPermission, permissionResponse, isCameraOn, isFocused]);
-
 
   if (!visible) {
     return null;
