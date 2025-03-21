@@ -7,6 +7,7 @@ export function useTimer() {
     startTimeRef.current = Date.now();
   };
 
+
   const stopTimer = () => {
     if (startTimeRef.current !== null) {
       const elapsedTime = Date.now() - startTimeRef.current;

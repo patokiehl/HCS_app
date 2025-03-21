@@ -5,15 +5,19 @@ import CameraPreview from '@/components/CameraPreview';
 import useShoulderAttack from '@/hooks/useShoulderAttack';
 import TextView from '@/components/TextView';
 import InputButton from '@/components/NativeButton';
-import { useTimer } from '@/hooks/useTime';
+import { useTimer } from '@/hooks/useTimer';
 
 export default function CameraCondition2() {
   const shoulderAttack = useShoulderAttack(7000, 1, 3000);
   const { startTimer, stopTimer } = useTimer();
+  const CameraOnStyle = { height: 200, width: 200, borderWidth: 1, borderColor: 'black' };
+  const CameraOffStyle = { height: 0, width: 0, borderWidth: 1, borderColor: 'black' };
+
 
   useEffect(() => {
     if (shoulderAttack) {
       startTimer();
+
     }
   }, [shoulderAttack, startTimer]);
 
@@ -21,11 +25,12 @@ export default function CameraCondition2() {
     const elapsedTime = stopTimer();
     console.log('Elapsed time (ms):', elapsedTime);
   };
+
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ height: 200, width: 200, borderWidth: 1, borderColor: 'black' }}>
-        <CameraPreview visible={shoulderAttack} style={{ flex: 1 }} />
-      </View>
+      <View style={shoulderAttack ? CameraOnStyle : CameraOffStyle}>
+  <CameraPreview visible={true} style={{ flex: 1 }} />
+</View>
       <View>
         <TextView
           texts={[

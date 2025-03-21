@@ -10,7 +10,6 @@ export const useBrightness = () => {
       const { status } = await Brightness.requestPermissionsAsync();
       if (status === 'granted') {
         setHasPermission(true);
-        console.log('we have brightness control');
         const currentBrightness = await Brightness.getBrightnessAsync();
         setBrightness(currentBrightness);
       } else {

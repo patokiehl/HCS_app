@@ -5,7 +5,7 @@ import TextView from '@/components/TextView';
 import VibrationActive from '@/components/Vibration';
 import useShoulderAttack from '@/hooks/useShoulderAttack';
 import InputButton from '@/components/NativeButton';
-import { useTimer } from '@/hooks/useTime';
+import { useTimer } from '@/hooks/useTimer';
 
 export default function VibrationCondition4() {
   const shoulderAttack = useShoulderAttack(5000, 1, 2000);

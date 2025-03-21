@@ -5,7 +5,7 @@ import FlashingBorder from '@/components/FlashingBorder';
 import TextView from '@/components/TextView';
 import useShoulderAttack from '@/hooks/useShoulderAttack';
 import InputButton from '@/components/NativeButton';
-import { useTimer } from '@/hooks/useTime';
+import { useTimer } from '@/hooks/useTimer';
 
 export default function BorderCondition1() {
   const shoulderAttack = useShoulderAttack(5000, 1, 2000);

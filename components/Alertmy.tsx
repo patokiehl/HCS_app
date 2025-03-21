@@ -1,20 +1,32 @@
 import { useEffect } from 'react';
 import { Alert } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
+import { useTimer } from '@/hooks/useTimer';
+type AlertProps = {
+  visible: boolean,
+};
 
-const AlertActive = ({ visible }: { visible: boolean }) => {
+const AlertActive = ({ visible}: AlertProps) => {
   const isFocused = useIsFocused();
+  const { startTimer, stopTimer } = useTimer();
+
 
   useEffect(() => {
-    if (visible && isFocused) {
+    if (visible && isFocused ) {
       Alert.alert(
         'Alert!',
         'You are being watched',
-        [{ text: 'OK', onPress: () => console.log('Alert acknowledged') }],
-        { cancelable: true },
+        [{
+          text: 'OK',
+          onPress: () => {
+            const elapsedTime = stopTimer();
+            console.log('Elapsed time (ms):', elapsedTime);
+          }
+        }],
+        { cancelable: false }
       );
     }
-  }, [visible, isFocused]);
+  }, [visible, isFocused ]);
 
   return null;
 };

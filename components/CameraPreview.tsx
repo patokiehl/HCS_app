@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Alert } from 'react-native';
 import { CameraView } from 'expo-camera';
 import { useCamera } from '../hooks/useCamera';
 import { useIsFocused } from '@react-navigation/native';
 
+
 type CameraPreviewProps = {
   visible: boolean;
   style?: object;
+  onCameraReady?: () => void;
 };
 
 const CameraPreview = ({ visible, style }: CameraPreviewProps) => {
@@ -19,9 +21,9 @@ const CameraPreview = ({ visible, style }: CameraPreviewProps) => {
       Alert.alert('Camera permission not granted');
     } else if (hasPermission && isFocused) {
       setIsCameraOn(true);
-      console.log(isCameraOn);
     }
   }, [hasPermission, permissionResponse, isCameraOn, isFocused]);
+
 
   if (!visible) {
     return null;

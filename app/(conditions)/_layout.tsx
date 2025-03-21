@@ -1,6 +1,5 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-
 import { useOrder } from '@/hooks/useOrder';
 
 type ConditionScreen = {
@@ -40,15 +39,3 @@ export default function ConditionsLayout() {
     </Tabs>
   );
 }
-
-// pass in different conditions with props to keep the experiment different
-// conditions we are testing - flashing border, show camera, alert icon, dim screen, vibrations on phone, screen shake, alert popup = 6 conditions Latin square = min of 6 people ideally 24 as that gives us 4 sets of data - I think
-// person 1 tests 1,2,3,4,5,6
-// person 2 tests 2,3,4,5,6,1
-// person 3 tests 3,4,5,6,1,2
-// person 4 tests 4,5,6,1,2,3
-// person 5 tests 5,6,1,2,3,4
-// person 6 tests 6,1,2,3,4,5
-
-// then we start again 4x
-// can I create a function that sets the order of the condition screens following dynamic programming?

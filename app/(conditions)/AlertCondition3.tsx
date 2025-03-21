@@ -1,25 +1,21 @@
 import { ScrollView, View } from 'react-native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import TextView from '@/components/TextView';
 
 import AlertActive from '@/components/Alertmy';
 import useShoulderAttack from '@/hooks/useShoulderAttack';
 import InputButton from '@/components/NativeButton';
-import { useTimer } from '@/hooks/useTime';
 
 export default function AlertCondition3() {
   const shoulderAttack = useShoulderAttack(7000, 1, 4000);
-  const { startTimer, stopTimer } = useTimer();
 
   useEffect(() => {
     if (shoulderAttack) {
-      startTimer();
     }
-  }, [shoulderAttack, startTimer]);
+  }, [shoulderAttack]);
 
   const handlePress = () => {
-    const elapsedTime = stopTimer();
-    console.log('Elapsed time (ms):', elapsedTime);
+    console.log('Elapsed time (ms): button pressed:');
   };
 
   return (

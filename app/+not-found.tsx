@@ -4,7 +4,6 @@ import { View, Text } from 'react-native';
 
 export default function NotFoundScreen() {
   const { order } = useLocalSearchParams<{ order?: string }>();
-  console.log('this is the order', order);
   return (
     <>
       <Stack.Screen options={{ title: 'Oops!' }} />

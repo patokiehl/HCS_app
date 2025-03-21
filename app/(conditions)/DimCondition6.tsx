@@ -5,7 +5,7 @@ import TextView from '@/components/TextView';
 import DimmingOn from '@/components/Dimming';
 import useShoulderAttack from '@/hooks/useShoulderAttack';
 import InputButton from '@/components/NativeButton';
-import { useTimer } from '@/hooks/useTime';
+import { useTimer } from '@/hooks/useTimer';
 
 export default function DimCondition6() {
   const shoulderAttack = useShoulderAttack(5000, 1, 2000);
