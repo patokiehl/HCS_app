@@ -6,12 +6,16 @@ import useShoulderAttack from '@/hooks/useShoulderAttack';
 import TextView from '@/components/TextView';
 import InputButton from '@/components/NativeButton';
 import { useTimer } from '@/hooks/useTimer';
+import { insertUserTimes } from '@/utils/Database';
+import { useUser } from '@/hooks/UserIDContexthook';
 
 export default function CameraCondition2() {
   const shoulderAttack = useShoulderAttack(7000, 1, 3000);
   const { startTimer, stopTimer } = useTimer();
   const CameraOnStyle = { height: 200, width: 200, borderWidth: 1, borderColor: 'black' };
   const CameraOffStyle = { height: 0, width: 0, borderWidth: 1, borderColor: 'black' };
+  const statement = insertUserTimes;
+  const { userId } = useUser();
 
   useEffect(() => {
     if (shoulderAttack) {
@@ -22,6 +26,8 @@ export default function CameraCondition2() {
   const handlePress = () => {
     const elapsedTime = stopTimer();
     console.log('Elapsed time (ms):', elapsedTime);
+    statement(userId, 'CameraCondition', elapsedTime);
+    console.log(statement);
   };
 
   return (

@@ -34,7 +34,7 @@ export default function AlertCondition3() {
         </View>
         <AlertActive visible={shoulderAttack} />
       </ScrollView>
-      <InputButton onPress={handlePress} title="submit" />
+      <InputButton onPress={handlePress} title="Submit" />
     </View>
   );
 }

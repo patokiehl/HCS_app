@@ -1,6 +1,8 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { useOrder } from '@/hooks/useOrder';
+import { createUser } from '@/utils/Database';
+import { useUser } from '@/hooks/UserIDContexthook';
 
 type ConditionScreen = {
   name: string;
@@ -25,6 +27,15 @@ function reorderConditions(order: number): ConditionScreen[] {
 export default function ConditionsLayout() {
   const startingOrder = useOrder();
   const screens = reorderConditions(startingOrder);
+  const { userId } = useUser();
+  console.log(userId);
+  if (userId) {
+    if (!isNaN(userId)) {
+      createUser(userId, startingOrder);
+      console.log('user created');
+      console.log(userId, startingOrder);
+    }
+  }
 
   return (
     <Tabs>
@@ -36,6 +47,7 @@ export default function ConditionsLayout() {
         />
       ))}
       <Tabs.Screen name="index" options={{ href: null, headerShown: false }} />
+      <Tabs.Screen name="finish" options={{ headerShown: false }} />
     </Tabs>
   );
 }

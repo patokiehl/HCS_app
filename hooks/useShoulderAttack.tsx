@@ -1,15 +1,5 @@
 import { useState, useEffect } from 'react';
-
-/**
- * Custom React hook that simulates a "shoulder attack" event.
- * @param {number} intervalDuration - The interval duration in milliseconds
- *                                    between each trigger attempt. Default is 60000.
- * @param {number} triggerChance - The probability (between 0 and 1) that the
- *                                 "shoulder attack" will be triggered during an interval. Default is 0.5.
- * @param {number} activeDuration - The duration in milliseconds that the
- *                                  "shoulder attack" remains active once triggered. Default is 5000.
- * @returns {boolean} - A boolean indicating whether the "shoulder attack" is currently active.
- */
+import { useIsFocused } from '@react-navigation/native';
 
 const useShoulderAttack = (
   intervalDuration: number = 60000,
@@ -17,10 +7,11 @@ const useShoulderAttack = (
   activeDuration: number = 5000,
 ): boolean => {
   const [shoulderAttack, setShoulderAttack] = useState(false);
+  const isFocussed = useIsFocused();
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (Math.random() < triggerChance) {
+      if (isFocussed && Math.random() < triggerChance) {
         setShoulderAttack(true);
         setTimeout(() => {
           setShoulderAttack(false);
@@ -29,7 +20,7 @@ const useShoulderAttack = (
     }, intervalDuration);
 
     return () => clearInterval(interval);
-  }, [intervalDuration, triggerChance, activeDuration]);
+  }, [intervalDuration, triggerChance, activeDuration, isFocussed]);
 
   return shoulderAttack;
 };
