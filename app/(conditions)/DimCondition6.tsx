@@ -6,10 +6,14 @@ import DimmingOn from '@/components/Dimming';
 import useShoulderAttack from '@/hooks/useShoulderAttack';
 import InputButton from '@/components/NativeButton';
 import { useTimer } from '@/hooks/useTimer';
+import { insertUserTimes } from '@/utils/Database';
+import { useUser } from '@/hooks/UserIDContexthook';
 
 export default function DimCondition6() {
   const shoulderAttack = useShoulderAttack(5000, 1, 2000);
   const { startTimer, stopTimer } = useTimer();
+  const statement = insertUserTimes;
+  const { userId } = useUser();
 
   useEffect(() => {
     if (shoulderAttack) {
@@ -20,6 +24,8 @@ export default function DimCondition6() {
   const handlePress = () => {
     const elapsedTime = stopTimer();
     console.log('Elapsed time (ms):', elapsedTime);
+    statement(userId, 'DimCondition', elapsedTime);
+    console.log(statement);
   };
   return (
     <View>

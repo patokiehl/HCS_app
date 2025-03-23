@@ -6,10 +6,16 @@ import TextView from '@/components/TextView';
 import useShoulderAttack from '@/hooks/useShoulderAttack';
 import InputButton from '@/components/NativeButton';
 import { useTimer } from '@/hooks/useTimer';
+import { insertUserTimes } from '@/utils/Database';
+import { useUser } from '@/hooks/UserIDContexthook';
 
 export default function BorderCondition1() {
   const shoulderAttack = useShoulderAttack(5000, 1, 2000);
   const { startTimer, stopTimer } = useTimer();
+  const statement = insertUserTimes;
+  const { userId } = useUser();
+  console.log(userId);
+  console.log('border reloaded');
 
   useEffect(() => {
     if (shoulderAttack) {
@@ -20,6 +26,8 @@ export default function BorderCondition1() {
   const handlePress = () => {
     const elapsedTime = stopTimer();
     console.log('Elapsed time (ms):', elapsedTime);
+    statement(userId, 'BorderCondition', elapsedTime);
+    console.log(statement);
   };
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -37,7 +45,7 @@ export default function BorderCondition1() {
           />
         </ScrollView>
       </View>
-      <InputButton onPress={handlePress} title="submit" />
+      <InputButton onPress={handlePress} title="Submit" />
     </View>
   );
 }
